@@ -2,11 +2,10 @@ import { collections, getFilteredCollectionProducts } from "@/data/store";
 import type { CollectionSlug } from "@/lib/types";
 
 import { CollectionIntro } from "./collection-intro";
-import { FilterBar } from "./filter-bar";
 import { Pagination } from "./pagination";
 import { ProductCard } from "./product-card";
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 interface CollectionPageProps {
   slug: CollectionSlug;
@@ -16,7 +15,9 @@ interface CollectionPageProps {
 
 export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPageProps) {
   const collection = collections[slug];
-  const filteredProducts = getFilteredCollectionProducts(slug, filter);
+  void filter;
+
+  const filteredProducts = getFilteredCollectionProducts(slug, "all");
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
   const safePage = Math.min(Math.max(page, 1), totalPages);
   const paginatedProducts = filteredProducts.slice(
@@ -29,8 +30,7 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
       <CollectionIntro title={collection.title} intro={collection.intro} notes={collection.notes} />
 
       <div className="space-y-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <FilterBar basePath={collection.href} filter={filter} options={collection.filterOptions} />
+        <div className="flex justify-end">
           <p className="text-[10px] uppercase tracking-[0.28em] text-black/42">
             {filteredProducts.length} works
           </p>
@@ -49,7 +49,7 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
         ) : (
           <div className="border-t border-black/10 pt-6">
             <p className="max-w-xl text-sm leading-7 text-black/58">
-              No works match the selected filter yet. Choose another grouping to view the current selection.
+              No works are available in this selection yet.
             </p>
           </div>
         )}
@@ -58,7 +58,6 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
           basePath={collection.href}
           currentPage={safePage}
           totalPages={totalPages}
-          filter={filter}
           label={collection.paginationLabel}
         />
       </div>

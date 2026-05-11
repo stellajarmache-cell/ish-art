@@ -23,7 +23,7 @@ export function AddToCartButton({ product }: { product: Product }) {
       onClick={handleClick}
       disabled={product.status === "sold"}
       className={cn(
-        "inline-flex min-h-12 items-center justify-center border px-5 text-[10px] uppercase tracking-[0.3em] transition-colors",
+        "invert-button inline-flex min-h-12 items-center justify-center border px-5 text-[10px] uppercase tracking-[0.3em] transition-colors",
         product.status === "sold"
           ? "cursor-not-allowed border-black/12 text-black/35"
           : "border-black text-black hover:bg-black hover:text-white",

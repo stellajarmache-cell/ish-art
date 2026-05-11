@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 
-import { collections, products } from "@/data/store";
+import { collections, isStorefrontCollection, products } from "@/data/store";
 import { formatCurrency } from "@/lib/utils";
 
 import { ArtworkImage } from "./artwork-image";
@@ -23,6 +23,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchableProducts = products.filter((product) => isStorefrontCollection(product.collection));
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -45,7 +46,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
 
   const normalizedQuery = deferredQuery.trim().toLowerCase();
   const results = normalizedQuery
-    ? products
+    ? searchableProducts
         .filter((product) => {
           const collectionLabel = collections[product.collection].title.toLowerCase();
           return [product.title, product.artistLine, product.description, collectionLabel, ...product.filters]
@@ -54,7 +55,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
             .includes(normalizedQuery);
         })
         .slice(0, 8)
-    : products.slice(0, 6);
+    : searchableProducts.slice(0, 6);
 
   return (
     <div className="fixed inset-0 z-50 bg-white/98">
@@ -63,7 +64,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
           <div className="space-y-2">
             <p className="text-[10px] uppercase tracking-[0.3em] text-black/45">Search</p>
             <p className="text-sm leading-7 text-black/60">
-              Search across editions, original drawings, and printed matter.
+              Search across editions and original drawings.
             </p>
           </div>
           <button
@@ -76,7 +77,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
         </div>
 
         <label htmlFor="site-search" className="sr-only">
-          Search the catalogue
+          Search the shop
         </label>
         <input
           id="site-search"

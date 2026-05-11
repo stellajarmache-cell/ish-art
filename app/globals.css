@@ -51,3 +51,9 @@ select {
 .font-serif {
   font-family: var(--font-serif-stack);
 }
+
+.invert-button:hover,
+.invert-button:hover * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}

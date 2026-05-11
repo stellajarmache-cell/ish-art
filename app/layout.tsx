@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "artist storefront",
     "fine art editions",
     "original drawings",
-    "catalogues",
     "minimal ecommerce",
   ],
   robots: {

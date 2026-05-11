@@ -1,8 +1,10 @@
-import type { ArtworkAspect, ArtworkSpec } from "@/lib/types";
+import Image from "next/image";
+
+import type { Artwork, ArtworkAspect, ArtworkSpec } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 interface ArtworkImageProps {
-  artwork: ArtworkSpec;
+  artwork: Artwork;
   className?: string;
   decorative?: boolean;
   label?: string;
@@ -167,6 +169,10 @@ function renderVariant(spec: ArtworkSpec, width: number, height: number) {
   }
 }
 
+function isArtworkAsset(artwork: Artwork): artwork is Extract<Artwork, { src: string }> {
+  return "src" in artwork;
+}
+
 export function ArtworkImage({
   artwork,
   className,
@@ -174,24 +180,39 @@ export function ArtworkImage({
   label,
   mediaAspect,
 }: ArtworkImageProps) {
-  const canvas = canvasDimensions[artwork.aspect];
   const displayAspect = mediaAspect ?? artwork.aspect;
 
   return (
     <div className={cn("relative overflow-hidden bg-transparent", aspectClasses[displayAspect], className)}>
       <div className="flex h-full w-full items-center justify-center">
         <div className={cn("relative max-h-full max-w-full", containedArtworkClasses[artwork.aspect])}>
-          <svg
-            viewBox={`0 0 ${canvas.width} ${canvas.height}`}
-            preserveAspectRatio="xMidYMid meet"
-            className="absolute inset-0 h-full w-full"
-            role={decorative ? undefined : "img"}
-            aria-hidden={decorative}
-            aria-label={decorative ? undefined : label}
-          >
-            <rect x="0" y="0" width={canvas.width} height={canvas.height} fill={artwork.base} />
-            {renderVariant(artwork, canvas.width, canvas.height)}
-          </svg>
+          {isArtworkAsset(artwork) ? (
+            <Image
+              src={artwork.src}
+              alt={decorative ? "" : label ?? artwork.alt}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-contain"
+            />
+          ) : (
+            (() => {
+              const canvas = canvasDimensions[artwork.aspect];
+
+              return (
+                <svg
+                  viewBox={`0 0 ${canvas.width} ${canvas.height}`}
+                  preserveAspectRatio="xMidYMid meet"
+                  className="absolute inset-0 h-full w-full"
+                  role={decorative ? undefined : "img"}
+                  aria-hidden={decorative}
+                  aria-label={decorative ? undefined : label}
+                >
+                  <rect x="0" y="0" width={canvas.width} height={canvas.height} fill={artwork.base} />
+                  {renderVariant(artwork, canvas.width, canvas.height)}
+                </svg>
+              );
+            })()
+          )}
         </div>
       </div>
     </div>

@@ -22,6 +22,14 @@ export interface ArtworkSpec {
   mark: string;
 }
 
+export interface ArtworkAsset {
+  src: string;
+  alt: string;
+  aspect: ArtworkAspect;
+}
+
+export type Artwork = ArtworkSpec | ArtworkAsset;
+
 export interface ProductSpec {
   label: string;
   value: string;
@@ -40,7 +48,7 @@ export interface Product {
   availabilityNote: string;
   filters: string[];
   specs: ProductSpec[];
-  artwork: ArtworkSpec;
+  artwork: Artwork;
 }
 
 export interface FilterOption {
@@ -55,6 +63,7 @@ export interface CollectionDefinition {
   title: string;
   intro: string;
   notes?: ProductSpec[];
+  showFilters?: boolean;
   filterOptions?: FilterOption[];
   paginationLabel: string;
   seoTitle: string;
@@ -80,6 +89,6 @@ export interface CartItem {
   title: string;
   artistLine: string;
   price: number;
-  artwork: ArtworkSpec;
+  artwork: Artwork;
   quantity: number;
 }
