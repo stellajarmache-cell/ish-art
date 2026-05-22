@@ -28,7 +28,7 @@ export function ProductCard({
 
         <div className="flex min-h-24 flex-1 flex-col">
           <div className="space-y-2">
-            <p className="text-sm text-black/58">Stella Ziegler</p>
+            <p className="text-sm text-black/58">Stella Jarmache</p>
             <h2 className="line-clamp-2 font-serif text-xl leading-tight tracking-[0.04em] text-black underline-offset-4 group-hover:underline">
               Title Placeholder
             </h2>

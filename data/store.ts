@@ -5,17 +5,18 @@ import type {
   CollectionSlug,
   FooterLink,
   Product,
+  ProductCollectionSlug,
 } from "@/lib/types";
 
 export const brand = {
   name: "ISH ART",
-  headerName: "STELLA ZIEGLER",
+  headerName: "STELLA JARMACHE",
   strapline: "Signed Editions and Original Prints",
   description:
     "A minimal storefront for fine art editions and original drawings.",
 };
 
-export const storefrontCollections: CollectionSlug[] = ["prints", "original-drawings"];
+export const storefrontCollections: ProductCollectionSlug[] = ["prints", "original-drawings"];
 
 export const footerLinks: FooterLink[] = [
   { href: "/contact", label: "Contact" },
@@ -53,19 +54,9 @@ export const collections: Record<CollectionSlug, CollectionDefinition> = {
     href: "/prints",
     navLabel: "PRINTS",
     title: "SIGNED PRINTS",
-    intro:
-      "Archival editions produced in small runs and released in measured intervals across the year.",
-    notes: [
-      { label: "Print type", value: "Pigment print, lithograph, and photopolymer etching." },
-      { label: "Paper stock", value: "310gsm cotton rag and mould-made stock." },
-      { label: "Signed", value: "Each edition is signed and numbered by hand." },
-      { label: "Edition", value: "Edition sizes range from 15 to 40 impressions." },
-      {
-        label: "Restriction",
-        value: "Framed works are currently limited to domestic delivery.",
-      },
-    ],
+    intro: "COMING SOON",
     showFilters: false,
+    comingSoon: true,
     filterOptions: [
       { label: "All", value: "all" },
       { label: "Etching", value: "etching" },
@@ -82,7 +73,7 @@ export const collections: Record<CollectionSlug, CollectionDefinition> = {
   "original-drawings": {
     slug: "original-drawings",
     href: "/original-drawings",
-    navLabel: "ORIGINAL DRAWINGS",
+    navLabel: "COLLECTIONS",
     title: "ORIGINALS",
     intro:
       "A changing selection of artwork drawn in the artist's studio.",
@@ -99,6 +90,25 @@ export const collections: Record<CollectionSlug, CollectionDefinition> = {
     seoTitle: "Originals",
     seoDescription:
       "View original drawings on paper, with understated sold and availability states.",
+    soldPresentation: "plain",
+  },
+  collections: {
+    slug: "collections",
+    href: "/collections",
+    navLabel: "COLLECTIONS",
+    title: "COLLECTIONS",
+    intro:
+      "Browse Stella Jarmache's available collections, including the aquatic figurative works of Aquarium Sapientum and the botanical studies of Flora and Fauna.",
+    showFilters: true,
+    filterOptions: [
+      { label: "All Collections", value: "all" },
+      { label: "Aquarium Sapientum", value: "aquarium-sapientum" },
+      { label: "Flora and Fauna", value: "flora-and-fauna" },
+    ],
+    paginationLabel: "Collection pages",
+    seoTitle: "Collections",
+    seoDescription:
+      "Browse Aquarium Sapientum, Flora and Fauna, and all current collections by Stella Jarmache.",
     soldPresentation: "plain",
   },
 };
@@ -129,7 +139,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "310gsm cotton rag" },
@@ -150,7 +160,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "Museum rag" },
@@ -171,7 +181,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "310gsm cotton rag" },
@@ -192,7 +202,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "Mould-made cotton paper" },
@@ -213,7 +223,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "Hahnemuhle Photo Rag" },
@@ -234,7 +244,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "308gsm rag paper" },
@@ -255,7 +265,7 @@ const printWorks: Product[] = [
     shippingDetails:
       "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
     availabilityNote: "Signed edition available.",
-    filters: ["edition"],
+    filters: ["edition", "flora-and-fauna"],
     specs: [
       { label: "Medium", value: "Archival pigment print" },
       { label: "Paper", value: "310gsm cotton rag" },
@@ -278,7 +288,7 @@ const originalDrawingWorks: Product[] = [
       "A one-off pastel drawing from the Sad Mermaid cycle, pairing a reclining figure with a small resting deer.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -298,7 +308,7 @@ const originalDrawingWorks: Product[] = [
       "A close rose study from the Sad Mermaid cycle, built with a cool violet field and soft reflected light.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "16 x 22 in" },
@@ -318,7 +328,7 @@ const originalDrawingWorks: Product[] = [
       "A larger figure-and-still-life pastel with tulips, cut glass, and a seated profile held in warm studio light.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "22 x 30 in" },
@@ -338,7 +348,7 @@ const originalDrawingWorks: Product[] = [
       "A garden scene from the cycle, with pale blossoms and a dark blue bird standing among the stems.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "20 x 28 in" },
@@ -358,7 +368,7 @@ const originalDrawingWorks: Product[] = [
       "A floral field with peony-like whites and ochres, held in a lower-key nocturnal register.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "16 x 20 in" },
@@ -378,7 +388,7 @@ const originalDrawingWorks: Product[] = [
       "A saturated floral pastel with drifting hollyhock forms and an electric ultramarine ground.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "20 x 28 in" },
@@ -398,7 +408,7 @@ const originalDrawingWorks: Product[] = [
       "A frontal figure wrapped in peonies, with a lifted gaze and high-key pinks against a muted field.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -418,7 +428,7 @@ const originalDrawingWorks: Product[] = [
       "A blue portrait with a seahorse companion, composed in translucent glazes of green and indigo.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "17 x 23 in" },
@@ -438,7 +448,7 @@ const originalDrawingWorks: Product[] = [
       "A close nocturne portrait with luminous pink and green passages moving across the face.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -458,7 +468,7 @@ const originalDrawingWorks: Product[] = [
       "A tilted portrait holding a fish, drawn with softened shadows and a narrow beam of blue light.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "17 x 23 in" },
@@ -478,7 +488,7 @@ const originalDrawingWorks: Product[] = [
       "A partial profile with a single tear, held close against the frame with a shell-toned blue ground.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "17 x 23 in" },
@@ -498,7 +508,7 @@ const originalDrawingWorks: Product[] = [
       "A half-length study with a flower-like form at the shoulder and a pronounced vertical tear through the cheek.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -518,7 +528,7 @@ const originalDrawingWorks: Product[] = [
       "A head-and-shoulders study with one raised arm, set against a deep field of aquatic violets and greens.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "19 x 26 in" },
@@ -538,7 +548,7 @@ const originalDrawingWorks: Product[] = [
       "A closed-eye study braided with reeds and fish, drawn in muted olive, blue, and ochre tones.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "17 x 23 in" },
@@ -558,7 +568,7 @@ const originalDrawingWorks: Product[] = [
       "A dimly lit figure with a glass vessel and fish, built through low-contrast blues and prismatic edge color.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -578,7 +588,7 @@ const originalDrawingWorks: Product[] = [
       "A side profile beneath a blue field, with an octopus-like form held close at the lower edge.",
     shippingDetails: "Flat shipping included when available.",
     availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid"],
+    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "18 x 24 in" },
@@ -598,7 +608,7 @@ const originalDrawingWorks: Product[] = [
       "A larger full-length figure suspended between jellyfish forms, concluding the Sad Mermaid cycle.",
     shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
     availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid"],
+    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
     specs: [
       { label: "Medium", value: "Soft pastel on paper" },
       { label: "Sheet", value: "22 x 30 in" },
@@ -609,11 +619,11 @@ const originalDrawingWorks: Product[] = [
 ];
 
 export const aboutPage: AboutPageContent = {
-  title: "About the Artist",
+  title: "About",
   biography:
-    "Ish Art is a placeholder studio for contemplative editions and works on paper. The practice moves between drawing, printed matter, and small-run objects, with an emphasis on quiet surfaces, measured pacing, and materials that age well.",
-  instagramLabel: "@isharteditions",
-  instagramHref: "https://instagram.com/isharteditions",
+    "Stella Jarmache is a Paris based artist focusing primarily in figurative art through the lens of symbolism, dreams, and Jungian psychology.",
+  instagramLabel: "@stellajarmache",
+  instagramHref: "https://instagram.com/stellajarmache",
   portrait: {
     aspect: "portrait",
     variant: "portrait",
@@ -904,6 +914,10 @@ export function getCollection(slug: CollectionSlug) {
 }
 
 export function getCollectionProducts(slug: CollectionSlug) {
+  if (slug === "collections") {
+    return products.filter((product) => isStorefrontCollection(product.collection));
+  }
+
   return products.filter((product) => product.collection === slug);
 }
 
@@ -921,7 +935,7 @@ export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);
 }
 
-export function isStorefrontCollection(slug: CollectionSlug) {
+export function isStorefrontCollection(slug: ProductCollectionSlug) {
   return storefrontCollections.includes(slug);
 }
 

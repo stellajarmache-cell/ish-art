@@ -16,7 +16,7 @@ export function SiteFooter() {
               </Link>
             ))}
         </nav>
-        <p className="text-[11px] uppercase tracking-[0.22em] text-black/55">© 2026 Stella Ziegler</p>
+        <p className="text-[11px] uppercase tracking-[0.22em] text-black/55">© 2026 Stella Jarmache</p>
       </div>
     </footer>
   );

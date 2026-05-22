@@ -1,4 +1,5 @@
-export type CollectionSlug = "catalogues" | "prints" | "original-drawings";
+export type ProductCollectionSlug = "catalogues" | "prints" | "original-drawings";
+export type CollectionSlug = ProductCollectionSlug | "collections";
 
 export type ProductStatus = "available" | "sold";
 
@@ -40,7 +41,7 @@ export interface Product {
   slug: string;
   title: string;
   artistLine: string;
-  collection: CollectionSlug;
+  collection: ProductCollectionSlug;
   price: number;
   status: ProductStatus;
   description: string;
@@ -64,6 +65,7 @@ export interface CollectionDefinition {
   intro: string;
   notes?: ProductSpec[];
   showFilters?: boolean;
+  comingSoon?: boolean;
   filterOptions?: FilterOption[];
   paginationLabel: string;
   seoTitle: string;

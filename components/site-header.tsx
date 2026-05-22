@@ -9,20 +9,28 @@ import { cn } from "@/lib/utils";
 
 import { useShop } from "./shop-provider";
 
-const navigation = [
+const navigationBeforeCollections = [
   { href: collections.prints.href, label: collections.prints.navLabel },
-  {
-    href: collections["original-drawings"].href,
-    label: collections["original-drawings"].navLabel,
-  },
+];
+
+const navigationAfterCollections = [
   { href: "/about", label: "ABOUT" },
+];
+
+const collectionNavigation = [
+  { href: collections.collections.href, label: "All Collections" },
+  { href: `${collections.collections.href}?filter=aquarium-sapientum`, label: "Aquarium Sapientum" },
+  { href: `${collections.collections.href}?filter=flora-and-fauna`, label: "Flora and Fauna" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const lastScrollYRef = useRef(0);
+  const collectionMenuRef = useRef<HTMLDivElement>(null);
+  const mobileCollectionMenuRef = useRef<HTMLDivElement>(null);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [collectionMenuOpen, setCollectionMenuOpen] = useState(false);
   const { openSearch } = useShop();
 
   useEffect(() => {
@@ -54,6 +62,24 @@ export function SiteHeader() {
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      const target = event.target as Node;
+      const pointerInDesktopMenu = collectionMenuRef.current?.contains(target);
+      const pointerInMobileMenu = mobileCollectionMenuRef.current?.contains(target);
+
+      if (!pointerInDesktopMenu && !pointerInMobileMenu) {
+        setCollectionMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
+
   function isActive(href: string) {
     return href === "/" ? pathname === href : pathname.startsWith(href);
   }
@@ -72,11 +98,16 @@ export function SiteHeader() {
 
   function closeMenu() {
     setMobileMenuOpen(false);
+    setCollectionMenuOpen(false);
   }
 
   function handleSearchOpen() {
     closeMenu();
     openSearch();
+  }
+
+  function toggleCollectionMenu() {
+    setCollectionMenuOpen((current) => !current);
   }
 
   return (
@@ -101,7 +132,55 @@ export function SiteHeader() {
               aria-label="Primary"
               className="hidden items-center gap-6 text-[10px] uppercase tracking-[0.28em] text-black/68 md:flex"
             >
-              {navigation.map((item) => (
+              {navigationBeforeCollections.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "transition-opacity hover:opacity-60",
+                    isActive(item.href) && "text-black",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div ref={collectionMenuRef} className="relative">
+                <button
+                  type="button"
+                  onClick={toggleCollectionMenu}
+                  className={cn(
+                    "uppercase transition-opacity hover:opacity-60",
+                    isActive(collections.collections.href) && "text-black",
+                  )}
+                  aria-expanded={collectionMenuOpen}
+                  aria-controls="collections-navigation-menu"
+                >
+                  {collections.collections.navLabel}
+                </button>
+                <div
+                  id="collections-navigation-menu"
+                  className={cn(
+                    "absolute left-1/2 top-full z-50 mt-4 w-64 -translate-x-1/2 border border-black/10 bg-white px-4 py-3 text-left shadow-sm transition-[opacity,transform]",
+                    collectionMenuOpen
+                      ? "pointer-events-auto translate-y-0 opacity-100"
+                      : "pointer-events-none -translate-y-1 opacity-0",
+                  )}
+                >
+                  <div className="flex flex-col gap-3">
+                    {collectionNavigation.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="text-[10px] uppercase tracking-[0.24em] text-black/62 transition-opacity hover:opacity-60"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {navigationAfterCollections.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -151,14 +230,56 @@ export function SiteHeader() {
           id="mobile-navigation"
           className={cn(
             "overflow-hidden transition-[max-height,opacity] duration-200 md:hidden",
-            mobileMenuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0",
+            mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
           )}
         >
           <nav
             aria-label="Mobile primary"
             className="flex flex-col gap-4 border-t border-black/10 py-5 text-[10px] uppercase tracking-[0.28em] text-black/70"
           >
-            {navigation.map((item) => (
+            {navigationBeforeCollections.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className={cn("transition-opacity hover:opacity-60", isActive(item.href) && "text-black")}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div ref={mobileCollectionMenuRef} className="flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={toggleCollectionMenu}
+                className={cn(
+                  "text-left uppercase transition-opacity hover:opacity-60",
+                  isActive(collections.collections.href) && "text-black",
+                )}
+                aria-expanded={collectionMenuOpen}
+                aria-controls="mobile-collections-navigation-menu"
+              >
+                {collections.collections.navLabel}
+              </button>
+              <div
+                id="mobile-collections-navigation-menu"
+                className={cn(
+                  "flex flex-col gap-3 overflow-hidden pl-4 transition-[max-height,opacity]",
+                  collectionMenuOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
+                )}
+              >
+                {collectionNavigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="text-black/55 transition-opacity hover:opacity-60"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            {navigationAfterCollections.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
