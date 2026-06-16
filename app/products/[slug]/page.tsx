@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArtworkImage } from "@/components/artwork-image";
@@ -11,6 +10,19 @@ import {
 import { formatCurrency } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
+
+function getInquireHref(title: string) {
+  const subject = `Inquiry about ${title}`;
+  const body = [
+    "Hello Stella Jarmache Studio,",
+    "",
+    `I'd like to inquire about purchasing ${title}. Could you please send me a payment link and I will complete the purchase?`,
+    "",
+    "Thank you,",
+  ].join("\n");
+
+  return `mailto:stelllajarmache@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 export async function generateStaticParams() {
   return products
@@ -72,7 +84,9 @@ export default async function ProductPage({
             <p className="text-sm uppercase tracking-[0.22em] text-black/42">
               {product.artistLine}
             </p>
-            <p className="max-w-md text-sm leading-7 text-black/64">{product.description}</p>
+            {product.status === "sold" ? (
+              <p className="text-[10px] uppercase tracking-[0.3em] text-black/48">Sold</p>
+            ) : null}
             <dl className="space-y-2 border-t border-black/10 pt-4">
               {product.specs.map((spec) => (
                 <div key={spec.label} className="grid gap-1 sm:grid-cols-[96px_1fr]">
@@ -84,12 +98,12 @@ export default async function ProductPage({
               ))}
             </dl>
             <p className="text-lg text-black/78">{formatCurrency(product.price)}</p>
-            <Link
-              href="/contact"
+            <a
+              href={getInquireHref(product.title)}
               className="invert-button inline-flex min-h-12 items-center justify-center border border-black px-5 text-[10px] uppercase tracking-[0.3em] text-black transition-colors hover:bg-black hover:text-white"
             >
               Inquire
-            </Link>
+            </a>
           </div>
         </div>
       </section>

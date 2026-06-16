@@ -6,6 +6,7 @@ import type {
   FooterLink,
   Product,
   ProductCollectionSlug,
+  ProductStatus,
 } from "@/lib/types";
 
 export const brand = {
@@ -126,21 +127,54 @@ function imageArtwork(fileName: string, alt: string, aspect: ArtworkAspect = "po
 }
 
 const floraAndFaunaWorks = [
-  { id: "prt-01", slug: "calliope", title: "Calliope", fileName: "1 Calliope.jpeg" },
-  { id: "prt-02", slug: "gaia", title: "Gaia", fileName: "2 Gaia.jpeg" },
-  { id: "prt-03", slug: "daydream", title: "Daydream", fileName: "3 Daydream.jpeg" },
+  {
+    id: "prt-01",
+    slug: "calliope",
+    title: "Calliope",
+    fileName: "1 Calliope.jpeg",
+    size: "50 x 65 cm",
+    price: 1800,
+  },
+  {
+    id: "prt-02",
+    slug: "gaia",
+    title: "Gaia",
+    fileName: "2 Gaia.jpeg",
+    size: "60 x 80 cm",
+    price: 4500,
+    status: "sold",
+  },
+  {
+    id: "prt-03",
+    slug: "daydream",
+    title: "Daydream",
+    fileName: "3 Daydream.jpeg",
+    size: "30 x 40 cm",
+    price: 250,
+  },
   {
     id: "prt-04",
     slug: "inside-looking-in",
     title: "Inside Looking In",
     fileName: "4 Inside Looking In.jpg",
+    size: "30 x 40 cm",
+    price: 400,
   },
-  { id: "prt-05", slug: "camelia", title: "Camelia", fileName: "5 Camelia.jpeg" },
+  {
+    id: "prt-05",
+    slug: "camelia",
+    title: "Camelia",
+    fileName: "5 Camelia.jpeg",
+    size: "24 x 29.6 cm",
+    price: 250,
+  },
   {
     id: "prt-06",
     slug: "white-peonies-i",
     title: "White Peonies I",
     fileName: "6 White Peonies 1.jpeg",
+    size: "24 x 29.6 cm",
+    price: 500,
     aspect: "landscape",
   },
   {
@@ -148,6 +182,8 @@ const floraAndFaunaWorks = [
     slug: "white-peonies-ii",
     title: "White Peonies II",
     fileName: "7 White Peonies 2.jpeg",
+    size: "23 x 30 cm",
+    price: 500,
     aspect: "landscape",
   },
   {
@@ -155,41 +191,56 @@ const floraAndFaunaWorks = [
     slug: "hermits-park-i",
     title: "Hermit's Park I",
     fileName: "8 Hermit's Park 1.jpeg",
+    size: "47.5 x 67.5 cm",
+    price: 2500,
   },
   {
     id: "prt-09",
     slug: "hermits-park-ii",
     title: "Hermit's Park II",
     fileName: "9 Hermit's Park 2.jpeg",
+    size: "70 x 100 cm",
+    price: 4500,
+    status: "sold",
   },
 ] satisfies ReadonlyArray<{
   id: string;
   slug: string;
   title: string;
   fileName: string;
+  size: string;
+  price: number;
+  status?: ProductStatus;
   aspect?: ArtworkAspect;
 }>;
 
 const printWorks: Product[] = floraAndFaunaWorks.map(
-  ({ id, slug, title, fileName, aspect }): Product => ({
-    id,
-    slug,
-    title,
-    artistLine: "Flora and Fauna",
-    collection: "prints",
-    price: 4500,
-    status: "available",
-    description: "Artwork from the Flora and Fauna collection.",
-    shippingDetails: "Inquire for shipping and availability details.",
-    availabilityNote: "Available.",
-    filters: ["available", "flora-and-fauna"],
-    specs: [{ label: "Collection", value: "Flora and Fauna" }],
-    artwork: imageArtwork(
-      "Art website/Flora and Fauna/" + fileName,
-      title + " from Flora and Fauna",
-      aspect,
-    ),
-  }),
+  ({ id, slug, title, fileName, size, price, status, aspect }): Product => {
+    const productStatus: ProductStatus = status ?? "available";
+
+    return {
+      id,
+      slug,
+      title,
+      artistLine: "Pastel on paper",
+      collection: "prints",
+      price,
+      status: productStatus,
+      description: `Pastel on paper. Size: ${size}.`,
+      shippingDetails: "Inquire for shipping and availability details.",
+      availabilityNote: productStatus === "sold" ? "Sold." : "Available.",
+      filters: [productStatus, "flora-and-fauna"],
+      specs: [
+        { label: "Medium", value: "Pastel on paper" },
+        { label: "Size", value: size },
+      ],
+      artwork: imageArtwork(
+        "Art website/Flora and Fauna/" + fileName,
+        title + " from Flora and Fauna",
+        aspect,
+      ),
+    };
+  },
 );
 
 const aquariumSapientumWorks = [
@@ -206,37 +257,47 @@ const aquariumSapientumWorks = [
   { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg" },
   { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg" },
   { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg" },
-  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg" },
+  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg", status: "sold" },
   { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg" },
   { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg" },
   { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg" },
   { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg" },
-] as const;
+] satisfies ReadonlyArray<{
+  id: string;
+  slug: string;
+  title: string;
+  fileName: string;
+  status?: ProductStatus;
+}>;
 
 const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
-  ({ id, slug, title, fileName }): Product => ({
-    id,
-    slug,
-    title,
-    artistLine: "Charcoal and pastel on paper",
-    collection: "original-drawings",
-    price: 4500,
-    status: "available",
-    description:
-      "Charcoal and pastel on paper. Size: 50 x 70 cm. Unique Artwork, signed on back.",
-    shippingDetails: "Inquire for shipping and availability details.",
-    availabilityNote: "Available.",
-    filters: ["available", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Charcoal and pastel on paper" },
-      { label: "Size", value: "50 x 70 cm" },
-      { label: "Artwork", value: "Unique Artwork, signed on back" },
-    ],
-    artwork: imageArtwork(
-      "Art website/Aquarium Sapientum/" + fileName,
-      title + " from Aquarium Sapientum",
-    ),
-  }),
+  ({ id, slug, title, fileName, status }): Product => {
+    const productStatus: ProductStatus = status ?? "available";
+
+    return {
+      id,
+      slug,
+      title,
+      artistLine: "Charcoal and pastel on paper",
+      collection: "original-drawings",
+      price: 4500,
+      status: productStatus,
+      description:
+        "Charcoal and pastel on paper. Size: 50 x 70 cm. Unique Artwork, signed on back.",
+      shippingDetails: "Inquire for shipping and availability details.",
+      availabilityNote: productStatus === "sold" ? "Sold." : "Available.",
+      filters: [productStatus, "aquarium-sapientum"],
+      specs: [
+        { label: "Medium", value: "Charcoal and pastel on paper" },
+        { label: "Size", value: "50 x 70 cm" },
+        { label: "Artwork", value: "Unique Artwork, signed on back" },
+      ],
+      artwork: imageArtwork(
+        "Art website/Aquarium Sapientum/" + fileName,
+        title + " from Aquarium Sapientum",
+      ),
+    };
+  },
 );
 export const aboutPage: AboutPageContent = {
   title: "About",

@@ -13,7 +13,7 @@ export function ProductCard({
   product,
   soldPresentation = "badge",
 }: ProductCardProps) {
-  void soldPresentation;
+  const soldLabel = soldPresentation === "plain" ? "Sold" : "Sold out";
 
   return (
     <article className="group h-full">
@@ -32,6 +32,11 @@ export function ProductCard({
             <h2 className="line-clamp-2 font-serif text-xl leading-tight tracking-[0.04em] text-black underline-offset-4 group-hover:underline">
               {product.title}
             </h2>
+            {product.status === "sold" ? (
+              <p className="text-[10px] uppercase tracking-[0.28em] text-black/48">
+                {soldLabel}
+              </p>
+            ) : null}
           </div>
         </div>
       </Link>
