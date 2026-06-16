@@ -83,7 +83,7 @@ export interface AboutPageContent {
   biography: string;
   instagramLabel: string;
   instagramHref: string;
-  portrait: ArtworkSpec;
+  portrait: Artwork;
 }
 
 export interface CartItem {

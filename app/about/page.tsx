@@ -18,7 +18,7 @@ export default function AboutPage() {
           <ArtworkImage
             artwork={aboutPage.portrait}
             decorative={false}
-            label="Portrait placeholder artwork"
+            label="Stella Jarmache portrait"
           />
         </div>
 

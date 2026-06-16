@@ -114,7 +114,7 @@ export const collections: Record<CollectionSlug, CollectionDefinition> = {
 };
 
 function toPublicImagePath(fileName: string) {
-  return `/${encodeURIComponent(fileName)}`;
+  return `/${fileName.split("/").map(encodeURIComponent).join("/")}`;
 }
 
 function imageArtwork(fileName: string, alt: string, aspect: ArtworkAspect = "portrait") {
@@ -125,499 +125,119 @@ function imageArtwork(fileName: string, alt: string, aspect: ArtworkAspect = "po
   };
 }
 
-const printWorks: Product[] = [
-  {
-    id: "prt-01",
-    slug: "bambi-edition",
-    title: "Bambi",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 280,
-    status: "available",
-    description:
-      "A signed edition after a pastel drawing of a resting fawn folded into deep green grasses.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "310gsm cotton rag" },
-      { label: "Edition", value: "18 + 2 AP" },
-    ],
-    artwork: imageArtwork("Bambi.jpeg", "Bambi signed print"),
-  },
-  {
-    id: "prt-02",
-    slug: "floral-i",
-    title: "Floral I",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 240,
-    status: "available",
-    description:
-      "A close rose study translated into a signed archival edition with a cool, velvety surface.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "Museum rag" },
-      { label: "Edition", value: "22 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 1.jpeg", "Floral I signed print"),
-  },
-  {
-    id: "prt-03",
-    slug: "floral-ii",
-    title: "Floral II",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 260,
-    status: "available",
-    description:
-      "A white bloom held against a dark ground, printed with a broad margin for float mounting.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "310gsm cotton rag" },
-      { label: "Edition", value: "20 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 2.jpeg", "Floral II signed print"),
-  },
+const floraAndFaunaWorks = [
+  { id: "prt-01", slug: "calliope", title: "Calliope", fileName: "1 Calliope.jpeg" },
+  { id: "prt-02", slug: "gaia", title: "Gaia", fileName: "2 Gaia.jpeg" },
+  { id: "prt-03", slug: "daydream", title: "Daydream", fileName: "3 Daydream.jpeg" },
   {
     id: "prt-04",
-    slug: "floral-iii",
-    title: "Floral III",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 265,
-    status: "available",
-    description:
-      "A tulip still life paired with a figure study and released as a small signed edition.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "Mould-made cotton paper" },
-      { label: "Edition", value: "16 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 3.jpeg", "Floral III signed print"),
+    slug: "inside-looking-in",
+    title: "Inside Looking In",
+    fileName: "4 Inside Looking In.jpg",
   },
-  {
-    id: "prt-05",
-    slug: "floral-iv",
-    title: "Floral IV",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 250,
-    status: "available",
-    description:
-      "A dense garden scene rendered in pale violets and soft greens, reproduced as an archival print.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "Hahnemuhle Photo Rag" },
-      { label: "Edition", value: "24 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 4.jpeg", "Floral IV signed print"),
-  },
+  { id: "prt-05", slug: "camelia", title: "Camelia", fileName: "5 Camelia.jpeg" },
   {
     id: "prt-06",
-    slug: "floral-v",
-    title: "Floral V",
-    artistLine: "Signed print / archival edition",
-    collection: "prints",
-    price: 230,
-    status: "available",
-    description:
-      "A wide bouquet composition offered as a signed edition in a softer horizontal format.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "308gsm rag paper" },
-      { label: "Edition", value: "14 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 5.jpeg", "Floral V signed print", "landscape"),
+    slug: "white-peonies-i",
+    title: "White Peonies I",
+    fileName: "6 White Peonies 1.jpeg",
+    aspect: "landscape",
   },
   {
     id: "prt-07",
-    slug: "floral-vi",
-    title: "Floral VI",
-    artistLine: "Signed print / archival edition",
+    slug: "white-peonies-ii",
+    title: "White Peonies II",
+    fileName: "7 White Peonies 2.jpeg",
+    aspect: "landscape",
+  },
+  {
+    id: "prt-08",
+    slug: "hermits-park-i",
+    title: "Hermit's Park I",
+    fileName: "8 Hermit's Park 1.jpeg",
+  },
+  {
+    id: "prt-09",
+    slug: "hermits-park-ii",
+    title: "Hermit's Park II",
+    fileName: "9 Hermit's Park 2.jpeg",
+  },
+] satisfies ReadonlyArray<{
+  id: string;
+  slug: string;
+  title: string;
+  fileName: string;
+  aspect?: ArtworkAspect;
+}>;
+
+const printWorks: Product[] = floraAndFaunaWorks.map(
+  ({ id, slug, title, fileName, aspect }): Product => ({
+    id,
+    slug,
+    title,
+    artistLine: "Flora and Fauna",
     collection: "prints",
-    price: 270,
+    price: 4500,
     status: "available",
-    description:
-      "A luminous hollyhock study set against saturated blue, printed in a restrained small run.",
-    shippingDetails:
-      "Signed prints ship flat in an archival folio. Domestic framing is available on request.",
-    availabilityNote: "Signed edition available.",
-    filters: ["edition", "flora-and-fauna"],
-    specs: [
-      { label: "Medium", value: "Archival pigment print" },
-      { label: "Paper", value: "310gsm cotton rag" },
-      { label: "Edition", value: "19 + 2 AP" },
-    ],
-    artwork: imageArtwork("Floral 6.jpeg", "Floral VI signed print"),
-  },
-];
+    description: "Artwork from the Flora and Fauna collection.",
+    shippingDetails: "Inquire for shipping and availability details.",
+    availabilityNote: "Available.",
+    filters: ["available", "flora-and-fauna"],
+    specs: [{ label: "Collection", value: "Flora and Fauna" }],
+    artwork: imageArtwork(
+      "Art website/Flora and Fauna/" + fileName,
+      title + " from Flora and Fauna",
+      aspect,
+    ),
+  }),
+);
 
-const originalDrawingWorks: Product[] = [
-  {
-    id: "org-01",
-    slug: "sad-mermaid-i",
-    title: "Sad Mermaid I",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 980,
-    status: "available",
-    description:
-      "A one-off pastel drawing from the Sad Mermaid cycle, pairing a reclining figure with a small resting deer.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 1.jpeg", "Sad Mermaid I original drawing"),
-  },
-  {
-    id: "org-02",
-    slug: "sad-mermaid-ii",
-    title: "Sad Mermaid II",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 620,
-    status: "sold",
-    description:
-      "A close rose study from the Sad Mermaid cycle, built with a cool violet field and soft reflected light.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "16 x 22 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 2.jpeg", "Sad Mermaid II original drawing"),
-  },
-  {
-    id: "org-03",
-    slug: "sad-mermaid-iii",
-    title: "Sad Mermaid III",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 1120,
-    status: "available",
-    description:
-      "A larger figure-and-still-life pastel with tulips, cut glass, and a seated profile held in warm studio light.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "22 x 30 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 3.jpeg", "Sad Mermaid III original drawing"),
-  },
-  {
-    id: "org-04",
-    slug: "sad-mermaid-iv",
-    title: "Sad Mermaid IV",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 910,
-    status: "available",
-    description:
-      "A garden scene from the cycle, with pale blossoms and a dark blue bird standing among the stems.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "20 x 28 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 4.jpeg", "Sad Mermaid IV original drawing"),
-  },
-  {
-    id: "org-05",
-    slug: "sad-mermaid-v",
-    title: "Sad Mermaid V",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 680,
-    status: "sold",
-    description:
-      "A floral field with peony-like whites and ochres, held in a lower-key nocturnal register.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "16 x 20 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 5.jpeg", "Sad Mermaid V original drawing"),
-  },
-  {
-    id: "org-06",
-    slug: "sad-mermaid-vi",
-    title: "Sad Mermaid VI",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 1040,
-    status: "available",
-    description:
-      "A saturated floral pastel with drifting hollyhock forms and an electric ultramarine ground.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "20 x 28 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 6.jpeg", "Sad Mermaid VI original drawing"),
-  },
-  {
-    id: "org-07",
-    slug: "sad-mermaid-vii",
-    title: "Sad Mermaid VII",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 860,
-    status: "available",
-    description:
-      "A frontal figure wrapped in peonies, with a lifted gaze and high-key pinks against a muted field.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 7.jpeg", "Sad Mermaid VII original drawing"),
-  },
-  {
-    id: "org-08",
-    slug: "sad-mermaid-viii",
-    title: "Sad Mermaid VIII",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 740,
-    status: "sold",
-    description:
-      "A blue portrait with a seahorse companion, composed in translucent glazes of green and indigo.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "17 x 23 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 8.jpeg", "Sad Mermaid VIII original drawing"),
-  },
-  {
-    id: "org-09",
-    slug: "sad-mermaid-ix",
-    title: "Sad Mermaid IX",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 760,
-    status: "available",
-    description:
-      "A close nocturne portrait with luminous pink and green passages moving across the face.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 9.jpeg", "Sad Mermaid IX original drawing"),
-  },
-  {
-    id: "org-10",
-    slug: "sad-mermaid-x",
-    title: "Sad Mermaid X",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 720,
-    status: "available",
-    description:
-      "A tilted portrait holding a fish, drawn with softened shadows and a narrow beam of blue light.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "17 x 23 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 10.jpeg", "Sad Mermaid X original drawing"),
-  },
-  {
-    id: "org-11",
-    slug: "sad-mermaid-xi",
-    title: "Sad Mermaid XI",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 700,
-    status: "sold",
-    description:
-      "A partial profile with a single tear, held close against the frame with a shell-toned blue ground.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "17 x 23 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 11.jpeg", "Sad Mermaid XI original drawing"),
-  },
-  {
-    id: "org-12",
-    slug: "sad-mermaid-xii",
-    title: "Sad Mermaid XII",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 790,
-    status: "available",
-    description:
-      "A half-length study with a flower-like form at the shoulder and a pronounced vertical tear through the cheek.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 12.jpeg", "Sad Mermaid XII original drawing"),
-  },
-  {
-    id: "org-13",
-    slug: "sad-mermaid-xiii",
-    title: "Sad Mermaid XIII",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 810,
-    status: "available",
-    description:
-      "A head-and-shoulders study with one raised arm, set against a deep field of aquatic violets and greens.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "19 x 26 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 13.jpeg", "Sad Mermaid XIII original drawing"),
-  },
-  {
-    id: "org-14",
-    slug: "sad-mermaid-xiv",
-    title: "Sad Mermaid XIV",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 690,
-    status: "sold",
-    description:
-      "A closed-eye study braided with reeds and fish, drawn in muted olive, blue, and ochre tones.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "17 x 23 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 14.jpeg", "Sad Mermaid XIV original drawing"),
-  },
-  {
-    id: "org-15",
-    slug: "sad-mermaid-xv",
-    title: "Sad Mermaid XV",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 730,
-    status: "available",
-    description:
-      "A dimly lit figure with a glass vessel and fish, built through low-contrast blues and prismatic edge color.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 15.jpeg", "Sad Mermaid XV original drawing"),
-  },
-  {
-    id: "org-16",
-    slug: "sad-mermaid-xvi",
-    title: "Sad Mermaid XVI",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 840,
-    status: "sold",
-    description:
-      "A side profile beneath a blue field, with an octopus-like form held close at the lower edge.",
-    shippingDetails: "Flat shipping included when available.",
-    availabilityNote: "Sold.",
-    filters: ["sold", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "18 x 24 in" },
-      { label: "Year", value: "2025" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 16.jpeg", "Sad Mermaid XVI original drawing"),
-  },
-  {
-    id: "org-17",
-    slug: "sad-mermaid-xvii",
-    title: "Sad Mermaid XVII",
-    artistLine: "Original / pastel on paper",
-    collection: "original-drawings",
-    price: 1440,
-    status: "available",
-    description:
-      "A larger full-length figure suspended between jellyfish forms, concluding the Sad Mermaid cycle.",
-    shippingDetails: "Complimentary domestic shipping in a flat archival mailer.",
-    availabilityNote: "Available.",
-    filters: ["available", "sad-mermaid", "aquarium-sapientum"],
-    specs: [
-      { label: "Medium", value: "Soft pastel on paper" },
-      { label: "Sheet", value: "22 x 30 in" },
-      { label: "Year", value: "2026" },
-    ],
-    artwork: imageArtwork("Sad Mermaid 17.jpeg", "Sad Mermaid XVII original drawing"),
-  },
-];
+const aquariumSapientumWorks = [
+  { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg" },
+  { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg" },
+  { id: "org-03", slug: "guinevere", title: "Guinevere", fileName: "P3 Guinevere.jpeg" },
+  { id: "org-04", slug: "ula", title: "Ula", fileName: "P4 Ula.jpeg" },
+  { id: "org-05", slug: "neith", title: "Neith", fileName: "P5 Neith.jpeg" },
+  { id: "org-06", slug: "maya", title: "Maya", fileName: "P6 Maya.jpeg" },
+  { id: "org-07", slug: "ondine", title: "Ondine", fileName: "P7 Ondine.jpeg" },
+  { id: "org-08", slug: "serena", title: "Serena", fileName: "P8 Serena.jpeg" },
+  { id: "org-09", slug: "morwenna", title: "Morwenna", fileName: "P9 Morwenna.jpeg" },
+  { id: "org-10", slug: "aerwyna", title: "Aerwyna", fileName: "P10 Aerwyna.jpeg" },
+  { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg" },
+  { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg" },
+  { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg" },
+  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg" },
+  { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg" },
+  { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg" },
+  { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg" },
+  { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg" },
+] as const;
 
+const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
+  ({ id, slug, title, fileName }): Product => ({
+    id,
+    slug,
+    title,
+    artistLine: "Charcoal and pastel on paper",
+    collection: "original-drawings",
+    price: 4500,
+    status: "available",
+    description:
+      "Charcoal and pastel on paper. Size: 50 x 70 cm. Unique Artwork, signed on back.",
+    shippingDetails: "Inquire for shipping and availability details.",
+    availabilityNote: "Available.",
+    filters: ["available", "aquarium-sapientum"],
+    specs: [
+      { label: "Medium", value: "Charcoal and pastel on paper" },
+      { label: "Size", value: "50 x 70 cm" },
+      { label: "Artwork", value: "Unique Artwork, signed on back" },
+    ],
+    artwork: imageArtwork(
+      "Art website/Aquarium Sapientum/" + fileName,
+      title + " from Aquarium Sapientum",
+    ),
+  }),
+);
 export const aboutPage: AboutPageContent = {
   title: "About",
   biography:
@@ -625,12 +245,9 @@ export const aboutPage: AboutPageContent = {
   instagramLabel: "@stellajarmache",
   instagramHref: "https://instagram.com/stellajarmache",
   portrait: {
-    aspect: "portrait",
-    variant: "portrait",
-    base: "#faf8f2",
-    tone: "#cec8bc",
-    accent: "#2f2b28",
-    mark: "#6f675d",
+    src: toPublicImagePath("Art website/FINAL ABOUT PIC.PNG"),
+    alt: "Stella Jarmache portrait",
+    aspect: "square",
   },
 };
 

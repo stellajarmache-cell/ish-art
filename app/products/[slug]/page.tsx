@@ -72,6 +72,17 @@ export default async function ProductPage({
             <p className="text-sm uppercase tracking-[0.22em] text-black/42">
               {product.artistLine}
             </p>
+            <p className="max-w-md text-sm leading-7 text-black/64">{product.description}</p>
+            <dl className="space-y-2 border-t border-black/10 pt-4">
+              {product.specs.map((spec) => (
+                <div key={spec.label} className="grid gap-1 sm:grid-cols-[96px_1fr]">
+                  <dt className="text-[10px] uppercase tracking-[0.24em] text-black/42">
+                    {spec.label}
+                  </dt>
+                  <dd className="text-sm leading-6 text-black/68">{spec.value}</dd>
+                </div>
+              ))}
+            </dl>
             <p className="text-lg text-black/78">{formatCurrency(product.price)}</p>
             <Link
               href="/contact"

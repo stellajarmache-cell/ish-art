@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
-      <body className="min-h-full bg-white text-black">
+      <body className="min-h-full bg-background text-foreground">
         <ShopProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />

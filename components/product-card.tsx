@@ -30,7 +30,7 @@ export function ProductCard({
           <div className="space-y-2">
             <p className="text-sm text-black/58">Stella Jarmache</p>
             <h2 className="line-clamp-2 font-serif text-xl leading-tight tracking-[0.04em] text-black underline-offset-4 group-hover:underline">
-              Title Placeholder
+              {product.title}
             </h2>
           </div>
         </div>

@@ -1,10 +1,10 @@
 @import "../node_modules/tailwindcss/index.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
-  --muted: rgba(17, 17, 17, 0.62);
-  --border: rgba(17, 17, 17, 0.12);
+  --background: #000000;
+  --foreground: #f7f4ee;
+  --muted: rgba(247, 244, 238, 0.64);
+  --border: rgba(247, 244, 238, 0.18);
   --font-sans-stack: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif-stack: Iowan Old Style, Palatino Linotype, Book Antiqua, Baskerville,
     Georgia, Times New Roman, serif;
@@ -45,15 +45,53 @@ select {
 }
 
 ::selection {
-  background: rgba(17, 17, 17, 0.1);
+  background: rgba(247, 244, 238, 0.22);
 }
 
 .font-serif {
   font-family: var(--font-serif-stack);
 }
 
+.bg-white,
+.bg-white\/95,
+.bg-white\/98 {
+  background-color: var(--background) !important;
+}
+
+.text-black {
+  color: var(--foreground) !important;
+}
+
+[class*="text-black/"] {
+  color: var(--muted) !important;
+}
+
+.border-black,
+[class*="border-black/"] {
+  border-color: var(--border) !important;
+}
+
+.placeholder\:text-black\/28::placeholder {
+  color: rgba(247, 244, 238, 0.36) !important;
+}
+
+.hover\:border-black\/25:hover,
+.hover\:border-black\/35:hover,
+.focus\:border-black:focus {
+  border-color: rgba(247, 244, 238, 0.42) !important;
+}
+
+.hover\:text-black\/75:hover,
+.hover\:text-white:hover {
+  color: #000000 !important;
+}
+
+.hover\:bg-black:hover {
+  background-color: var(--foreground) !important;
+}
+
 .invert-button:hover,
 .invert-button:hover * {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
 }
