@@ -17,6 +17,12 @@ interface CollectionPageProps {
 export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPageProps) {
   const collection = collections[slug];
   const isAquariumSapientum = filter === "aquarium-sapientum";
+  const isFloraAndFauna = filter === "flora-and-fauna";
+  const backgroundColor = isAquariumSapientum
+    ? "#002147"
+    : isFloraAndFauna
+      ? "#777871"
+      : undefined;
 
   const filteredProducts = getFilteredCollectionProducts(slug, filter);
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
@@ -29,7 +35,7 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
   return (
     <div
       className="w-full"
-      style={isAquariumSapientum ? { backgroundColor: "#002147" } : undefined}
+      style={backgroundColor ? { backgroundColor } : undefined}
     >
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <CollectionIntro title={collection.title} intro={collection.intro} notes={collection.notes} />
