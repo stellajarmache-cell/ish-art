@@ -16,6 +16,7 @@ interface CollectionPageProps {
 
 export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPageProps) {
   const collection = collections[slug];
+  const isAquariumSapientum = filter === "aquarium-sapientum";
 
   const filteredProducts = getFilteredCollectionProducts(slug, filter);
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
@@ -26,49 +27,54 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-      <CollectionIntro title={collection.title} intro={collection.intro} notes={collection.notes} />
+    <div
+      className="w-full"
+      style={isAquariumSapientum ? { backgroundColor: "#203842" } : undefined}
+    >
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <CollectionIntro title={collection.title} intro={collection.intro} notes={collection.notes} />
 
-      {collection.comingSoon ? null : (
-        <div className="space-y-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          {collection.showFilters && collection.filterOptions ? (
-            <CollectionSelect filter={filter} options={collection.filterOptions} />
-          ) : (
-            <div />
-          )}
-          <p className="text-[10px] uppercase tracking-[0.28em] text-black/42">
-            {filteredProducts.length} works
-          </p>
-        </div>
-
-        {paginatedProducts.length > 0 ? (
-          <div className="grid auto-rows-fr grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {paginatedProducts.map((product) => (
-              <ProductCard
-                key={product.slug}
-                product={product}
-                soldPresentation={collection.soldPresentation}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="border-t border-black/10 pt-6">
-            <p className="max-w-xl text-sm leading-7 text-black/58">
-              No works are available in this selection yet.
+        {collection.comingSoon ? null : (
+          <div className="space-y-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            {collection.showFilters && collection.filterOptions ? (
+              <CollectionSelect filter={filter} options={collection.filterOptions} />
+            ) : (
+              <div />
+            )}
+            <p className="text-[10px] uppercase tracking-[0.28em] text-black/42">
+              {filteredProducts.length} works
             </p>
           </div>
-        )}
 
-        <Pagination
-          basePath={collection.href}
-          currentPage={safePage}
-          totalPages={totalPages}
-          filter={filter}
-          label={collection.paginationLabel}
-        />
-        </div>
-      )}
+          {paginatedProducts.length > 0 ? (
+            <div className="grid auto-rows-fr grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {paginatedProducts.map((product) => (
+                <ProductCard
+                  key={product.slug}
+                  product={product}
+                  soldPresentation={collection.soldPresentation}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="border-t border-black/10 pt-6">
+              <p className="max-w-xl text-sm leading-7 text-black/58">
+                No works are available in this selection yet.
+              </p>
+            </div>
+          )}
+
+          <Pagination
+            basePath={collection.href}
+            currentPage={safePage}
+            totalPages={totalPages}
+            filter={filter}
+            label={collection.paginationLabel}
+          />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -64,7 +64,13 @@ export default async function ProductPage({
     notFound();
   }
 
+  const isAquariumSapientum = product.filters.includes("aquarium-sapientum");
+
   return (
+    <div
+      className="w-full"
+      style={isAquariumSapientum ? { backgroundColor: "#203842" } : undefined}
+    >
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start">
         <div className="space-y-4">
@@ -107,6 +113,7 @@ export default async function ProductPage({
           </div>
         </div>
       </section>
+    </div>
     </div>
   );
 }
