@@ -69,7 +69,7 @@ export default async function ProductPage({
   return (
     <div
       className="w-full"
-      style={isAquariumSapientum ? { backgroundColor: "#1c3a56" } : undefined}
+      style={isAquariumSapientum ? { backgroundColor: "#002147" } : undefined}
     >
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start">
