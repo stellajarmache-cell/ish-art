@@ -244,34 +244,35 @@ const printWorks: Product[] = floraAndFaunaWorks.map(
 );
 
 const aquariumSapientumWorks = [
-  { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg" },
-  { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg" },
-  { id: "org-03", slug: "guinevere", title: "Guinevere", fileName: "P3 Guinevere.jpeg" },
-  { id: "org-04", slug: "ula", title: "Ula", fileName: "P4 Ula.jpeg" },
-  { id: "org-05", slug: "neith", title: "Neith", fileName: "P5 Neith.jpeg" },
-  { id: "org-06", slug: "maya", title: "Maya", fileName: "P6 Maya.jpeg" },
-  { id: "org-07", slug: "ondine", title: "Ondine", fileName: "P7 Ondine.jpeg" },
-  { id: "org-08", slug: "serena", title: "Serena", fileName: "P8 Serena.jpeg" },
-  { id: "org-09", slug: "morwenna", title: "Morwenna", fileName: "P9 Morwenna.jpeg" },
-  { id: "org-10", slug: "aerwyna", title: "Aerwyna", fileName: "P10 Aerwyna.jpeg" },
-  { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg" },
-  { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg" },
-  { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg" },
-  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg", status: "sold" },
-  { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg" },
-  { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg" },
-  { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg" },
-  { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg" },
+  { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg", size: "30 x 40 cm" },
+  { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg", size: "30 x 40 cm" },
+  { id: "org-03", slug: "guinevere", title: "Guinevere", fileName: "P3 Guinevere.jpeg", size: "30 x 40 cm" },
+  { id: "org-04", slug: "ula", title: "Ula", fileName: "P4 Ula.jpeg", size: "30 x 40 cm" },
+  { id: "org-05", slug: "neith", title: "Neith", fileName: "P5 Neith.jpeg", size: "30 x 40 cm" },
+  { id: "org-06", slug: "maya", title: "Maya", fileName: "P6 Maya.jpeg", size: "30 x 40 cm" },
+  { id: "org-07", slug: "ondine", title: "Ondine", fileName: "P7 Ondine.jpeg", size: "30 x 40 cm" },
+  { id: "org-08", slug: "serena", title: "Serena", fileName: "P8 Serena.jpeg", size: "30 x 40 cm" },
+  { id: "org-09", slug: "morwenna", title: "Morwenna", fileName: "P9 Morwenna.jpeg", size: "30 x 40 cm" },
+  { id: "org-10", slug: "aerwyna", title: "Aerwyna", fileName: "P10 Aerwyna.jpeg", size: "30 x 40 cm" },
+  { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg", size: "30 x 40 cm" },
+  { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg", size: "30 x 40 cm" },
+  { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg", size: "30 x 40 cm" },
+  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg", status: "sold", size: "30 x 40 cm" },
+  { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg", size: "50 x 70 cm" },
+  { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg", size: "50 x 70 cm" },
+  { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg", size: "50 x 70 cm" },
+  { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg", size: "50 x 70 cm" },
 ] satisfies ReadonlyArray<{
   id: string;
   slug: string;
   title: string;
   fileName: string;
   status?: ProductStatus;
+  size: string;
 }>;
 
 const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
-  ({ id, slug, title, fileName, status }): Product => {
+  ({ id, slug, title, fileName, status, size }): Product => {
     const productStatus: ProductStatus = status ?? "available";
 
     return {
@@ -282,14 +283,13 @@ const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
       collection: "original-drawings",
       price: 1200,
       status: productStatus,
-      description:
-        "Charcoal and pastel on paper. Size: 50 x 70 cm. Unique Artwork, signed on back.",
+      description: `Charcoal and pastel on paper. Size: ${size}. Unique Artwork, signed on back.`,
       shippingDetails: "Inquire for shipping and availability details.",
       availabilityNote: productStatus === "sold" ? "Sold." : "Available.",
       filters: [productStatus, "aquarium-sapientum"],
       specs: [
         { label: "Medium", value: "Charcoal and pastel on paper" },
-        { label: "Size", value: "50 x 70 cm" },
+        { label: "Size", value: size },
         { label: "Artwork", value: "Unique Artwork, signed on back" },
       ],
       artwork: imageArtwork(
