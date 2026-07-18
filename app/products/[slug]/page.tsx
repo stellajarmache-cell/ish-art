@@ -67,7 +67,7 @@ export default async function ProductPage({
   const isAquariumSapientum = product.filters.includes("aquarium-sapientum");
   const isFloraAndFauna = product.filters.includes("flora-and-fauna");
   const backgroundColor = isAquariumSapientum
-    ? "#777871"
+    ? "#767e8b"
     : isFloraAndFauna
       ? "#777871"
       : undefined;
