@@ -280,7 +280,7 @@ const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
       title,
       artistLine: "Charcoal and pastel on paper",
       collection: "original-drawings",
-      price: 4500,
+      price: 1200,
       status: productStatus,
       description:
         "Charcoal and pastel on paper. Size: 50 x 70 cm. Unique Artwork, signed on back.",
