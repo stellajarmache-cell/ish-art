@@ -19,7 +19,7 @@ export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPag
   const isAquariumSapientum = filter === "aquarium-sapientum";
   const isFloraAndFauna = filter === "flora-and-fauna";
   const backgroundColor = isAquariumSapientum
-    ? "#767e8b"
+    ? "#455A6B"
     : isFloraAndFauna
       ? "#777871"
       : undefined;
