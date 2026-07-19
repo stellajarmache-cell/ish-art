@@ -115,7 +115,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 border-b border-black/10 bg-white/95 transition-transform duration-300 ease-out will-change-transform",
+        "sticky top-0 z-40 border-b border-black/10 transition-transform duration-300 ease-out will-change-transform",
+        !accentColor && "bg-white/95",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
       )}
       style={accentColor ? { backgroundColor: accentColor } : undefined}
