@@ -25,6 +25,7 @@ export default async function CollectionsPage({
       slug="collections"
       page={getPageNumber(params.page)}
       filter={getSingleParam(params.filter, "all")}
+      subFilter={getSingleParam(params.type, "")}
     />
   );
 }

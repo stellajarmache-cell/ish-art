@@ -1,6 +1,8 @@
-import { collections, getFilteredCollectionProducts } from "@/data/store";
+import Link from "next/link";
+
+import { collections, getAquariumSapientumSections, getFilteredCollectionProducts } from "@/data/store";
 import type { CollectionSlug } from "@/lib/types";
-import { collectionAccentColors } from "@/lib/utils";
+import { cn, collectionAccentColors } from "@/lib/utils";
 
 import { CollectionIntro } from "./collection-intro";
 import { CollectionSelect } from "./collection-select";
@@ -9,15 +11,107 @@ import { ProductCard } from "./product-card";
 
 const PAGE_SIZE = 12;
 
+const AQUARIUM_SAPIENTUM_GRID =
+  "grid auto-rows-fr grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3";
+
+const AQUARIUM_SAPIENTUM_INTRO_PLACEHOLDER =
+  "Placeholder text — collection introduction to be added.";
+
 interface CollectionPageProps {
   slug: CollectionSlug;
   page?: number;
   filter?: string;
+  subFilter?: string;
 }
 
-export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPageProps) {
+export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" }: CollectionPageProps) {
   const collection = collections[slug];
   const backgroundColor = collectionAccentColors[filter];
+  const isAquariumSapientum = slug === "collections" && filter === "aquarium-sapientum";
+
+  if (isAquariumSapientum) {
+    const { figures, portraits } = getAquariumSapientumSections();
+    const showFigures = subFilter !== "portraits";
+    const showPortraits = subFilter !== "figures";
+    const visibleCount = (showFigures ? figures.length : 0) + (showPortraits ? portraits.length : 0);
+
+    const baseHref = `${collection.href}?filter=aquarium-sapientum`;
+    const portraitsHref = subFilter === "portraits" ? baseHref : `${baseHref}&type=portraits`;
+    const figuresHref = subFilter === "figures" ? baseHref : `${baseHref}&type=figures`;
+
+    const subFilterButtonClassName =
+      "inline-flex min-h-9 items-center justify-center border bg-white px-4 text-[10px] uppercase tracking-[0.28em] transition-colors hover:border-black/45";
+
+    return (
+      <div className="w-full" style={backgroundColor ? { backgroundColor } : undefined}>
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+          <CollectionIntro title="Aquarium Sapientum" intro={AQUARIUM_SAPIENTUM_INTRO_PLACEHOLDER} />
+
+          <div className="space-y-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={portraitsHref}
+                  className={cn(
+                    subFilterButtonClassName,
+                    subFilter === "portraits" ? "border-black/45" : "border-black/18",
+                  )}
+                  style={{ color: backgroundColor }}
+                >
+                  Portraits
+                </Link>
+                <Link
+                  href={figuresHref}
+                  className={cn(
+                    subFilterButtonClassName,
+                    subFilter === "figures" ? "border-black/45" : "border-black/18",
+                  )}
+                  style={{ color: backgroundColor }}
+                >
+                  Figures
+                </Link>
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-black/42">
+                {visibleCount} works
+              </p>
+            </div>
+
+            {showFigures && figures.length > 0 ? (
+              <div className={AQUARIUM_SAPIENTUM_GRID}>
+                {figures.map((product) => (
+                  <ProductCard
+                    key={product.slug}
+                    product={product}
+                    soldPresentation={collection.soldPresentation}
+                  />
+                ))}
+              </div>
+            ) : null}
+
+            {showPortraits && portraits.length > 0 ? (
+              <div className={AQUARIUM_SAPIENTUM_GRID}>
+                {portraits.map((product) => (
+                  <ProductCard
+                    key={product.slug}
+                    product={product}
+                    soldPresentation={collection.soldPresentation}
+                  />
+                ))}
+              </div>
+            ) : null}
+
+            {visibleCount === 0 ? (
+              <div className="border-t border-black/10 pt-6">
+                <p className="max-w-xl text-sm leading-7 text-black/58">
+                  No works are available in this selection yet.
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const filteredProducts = getFilteredCollectionProducts(slug, filter);
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));

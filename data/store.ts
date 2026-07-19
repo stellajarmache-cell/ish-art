@@ -244,26 +244,26 @@ const printWorks: Product[] = floraAndFaunaWorks.map(
 );
 
 const aquariumSapientumWorks = [
-  { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg", size: "30 x 40 cm" },
-  { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg", size: "30 x 40 cm" },
-  { id: "org-03", slug: "guinevere", title: "Guinevere", fileName: "P3 Guinevere.jpeg", size: "30 x 40 cm" },
-  { id: "org-04", slug: "ula", title: "Ula", fileName: "P4 Ula.jpeg", size: "30 x 40 cm" },
-  { id: "org-05", slug: "neith", title: "Neith", fileName: "P5 Neith.jpeg", size: "30 x 40 cm" },
-  { id: "org-06", slug: "maya", title: "Maya", fileName: "P6 Maya.jpeg", size: "30 x 40 cm" },
-  { id: "org-07", slug: "ondine", title: "Ondine", fileName: "P7 Ondine.jpeg", size: "30 x 40 cm" },
-  { id: "org-08", slug: "serena", title: "Serena", fileName: "P8 Serena.jpeg", size: "30 x 40 cm" },
-  { id: "org-09", slug: "morwenna", title: "Morwenna", fileName: "P9 Morwenna.jpeg", size: "30 x 40 cm" },
-  { id: "org-10", slug: "aerwyna", title: "Aerwyna", fileName: "P10 Aerwyna.jpeg", size: "30 x 40 cm" },
-  { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg", size: "30 x 40 cm" },
-  { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg", size: "30 x 40 cm" },
-  { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg", size: "30 x 40 cm" },
-  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg", status: "sold", size: "30 x 40 cm" },
-  { id: "org-19", slug: "kaia", title: "Kaia", fileName: "P16 Kaia.jpg", size: "30 x 40 cm" },
-  { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg", size: "50 x 70 cm", price: 3500 },
-  { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg", size: "50 x 70 cm", price: 3500 },
-  { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg", size: "50 x 70 cm", price: 3500 },
-  { id: "org-20", slug: "corentina", title: "Corentina", fileName: "F5 Corentina.jpg", size: "50 x 70 cm", price: 3500 },
-  { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg", size: "50 x 70 cm", price: 3500 },
+  { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-03", slug: "guinevere", title: "Guinevere", fileName: "P3 Guinevere.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-04", slug: "ula", title: "Ula", fileName: "P4 Ula.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-05", slug: "neith", title: "Neith", fileName: "P5 Neith.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-06", slug: "maya", title: "Maya", fileName: "P6 Maya.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-07", slug: "ondine", title: "Ondine", fileName: "P7 Ondine.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-08", slug: "serena", title: "Serena", fileName: "P8 Serena.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-09", slug: "morwenna", title: "Morwenna", fileName: "P9 Morwenna.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-10", slug: "aerwyna", title: "Aerwyna", fileName: "P10 Aerwyna.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-11", slug: "severin", title: "Severin", fileName: "P11 Severin.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-12", slug: "oceane", title: "Oceane", fileName: "P12 Oceane.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-13", slug: "dylan", title: "Dylan", fileName: "P13 Dylan.jpeg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-14", slug: "lana", title: "Lana", fileName: "P14 Lana.jpeg", status: "sold", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-19", slug: "kaia", title: "Kaia", fileName: "P16 Kaia.jpg", size: "30 x 40 cm", group: "portraits" },
+  { id: "org-15", slug: "rosemary", title: "Rosemary", fileName: "F1 Rosemary.jpeg", size: "50 x 70 cm", price: 3500, group: "figures" },
+  { id: "org-16", slug: "darya", title: "Darya", fileName: "F2 Darya.jpeg", size: "50 x 70 cm", price: 3500, group: "figures" },
+  { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris.jpeg", size: "50 x 70 cm", price: 3500, group: "figures" },
+  { id: "org-20", slug: "corentina", title: "Corentina", fileName: "F5 Corentina.jpg", size: "50 x 70 cm", price: 3500, group: "figures" },
+  { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith.jpeg", size: "50 x 70 cm", price: 3500, group: "figures" },
 ] satisfies ReadonlyArray<{
   id: string;
   slug: string;
@@ -272,10 +272,11 @@ const aquariumSapientumWorks = [
   status?: ProductStatus;
   size: string;
   price?: number;
+  group: "portraits" | "figures";
 }>;
 
 const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
-  ({ id, slug, title, fileName, status, size, price }): Product => {
+  ({ id, slug, title, fileName, status, size, price, group }): Product => {
     const productStatus: ProductStatus = status ?? "available";
 
     return {
@@ -289,7 +290,7 @@ const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
       description: `Charcoal and pastel on paper. Size: ${size}. Unique Artwork, signed on back.`,
       shippingDetails: "Inquire for shipping and availability details.",
       availabilityNote: productStatus === "sold" ? "Sold." : "Available.",
-      filters: [productStatus, "aquarium-sapientum"],
+      filters: [productStatus, "aquarium-sapientum", group],
       specs: [
         { label: "Medium", value: "Charcoal and pastel on paper" },
         { label: "Size", value: size },
@@ -302,6 +303,24 @@ const originalDrawingWorks: Product[] = aquariumSapientumWorks.map(
     };
   },
 );
+
+const AQUARIUM_SAPIENTUM_FIGURES_ORDER = ["rosemary", "corentina", "darya", "doris", "meredith"];
+
+export function getAquariumSapientumSections() {
+  const figuresBySlug = new Map(
+    originalDrawingWorks
+      .filter((product) => product.filters.includes("figures"))
+      .map((product) => [product.slug, product] as const),
+  );
+
+  const figures = AQUARIUM_SAPIENTUM_FIGURES_ORDER.map((slug) => figuresBySlug.get(slug)).filter(
+    (product): product is Product => Boolean(product),
+  );
+
+  const portraits = originalDrawingWorks.filter((product) => product.filters.includes("portraits"));
+
+  return { figures, portraits };
+}
 export const aboutPage: AboutPageContent = {
   title: "About",
   biography:
