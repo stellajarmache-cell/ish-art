@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { brand, collections } from "@/data/store";
-import { cn } from "@/lib/utils";
+import { cn, collectionAccentColors } from "@/lib/utils";
 
 import { useShop } from "./shop-provider";
 import { useCollectionAccentColor } from "./use-collection-accent-color";
@@ -19,10 +19,19 @@ const navigationAfterCollections = [
 ];
 
 const collectionNavigation = [
-  { href: collections.collections.href, label: "All Collections" },
-  { href: `${collections.collections.href}?filter=aquarium-sapientum`, label: "Aquarium Sapientum" },
-  { href: `${collections.collections.href}?filter=flora-and-fauna`, label: "Flora and Fauna" },
+  {
+    href: `${collections.collections.href}?filter=aquarium-sapientum`,
+    label: "Aquarium Sapientum",
+    color: collectionAccentColors["aquarium-sapientum"],
+  },
+  {
+    href: `${collections.collections.href}?filter=flora-and-fauna`,
+    label: "Flora and Fauna",
+    color: collectionAccentColors["flora-and-fauna"],
+  },
 ];
+
+const COLLECTIONS_MENU_BACKGROUND = "#f7f4ee";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -164,11 +173,12 @@ export function SiteHeader() {
                 <div
                   id="collections-navigation-menu"
                   className={cn(
-                    "absolute left-1/2 top-full z-50 mt-4 w-64 -translate-x-1/2 border border-black/10 bg-white px-4 py-3 text-left shadow-sm transition-[opacity,transform]",
+                    "absolute left-1/2 top-full z-50 mt-4 w-64 -translate-x-1/2 border border-black/10 px-4 py-3 text-left shadow-sm transition-[opacity,transform]",
                     collectionMenuOpen
                       ? "pointer-events-auto translate-y-0 opacity-100"
                       : "pointer-events-none -translate-y-1 opacity-0",
                   )}
+                  style={{ backgroundColor: COLLECTIONS_MENU_BACKGROUND }}
                 >
                   <div className="flex flex-col gap-3">
                     {collectionNavigation.map((item) => (
@@ -176,7 +186,8 @@ export function SiteHeader() {
                         key={item.href}
                         href={item.href}
                         onClick={closeMenu}
-                        className="text-[10px] uppercase tracking-[0.24em] text-black/62 transition-opacity hover:opacity-60"
+                        className="text-[10px] font-bold uppercase tracking-[0.24em] transition-opacity hover:opacity-60"
+                        style={{ color: item.color }}
                       >
                         {item.label}
                       </Link>
@@ -276,7 +287,8 @@ export function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     onClick={closeMenu}
-                    className="text-black/55 transition-opacity hover:opacity-60"
+                    className="font-bold transition-opacity hover:opacity-60"
+                    style={{ color: item.color }}
                   >
                     {item.label}
                   </Link>
