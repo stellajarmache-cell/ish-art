@@ -60,6 +60,7 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
                     backgroundColor: subFilterButtonBackground,
                     outline: subFilter === "portraits" ? subFilterActiveOutline : undefined,
                     outlineOffset: subFilter === "portraits" ? "2px" : undefined,
+                    fontWeight: subFilter === "portraits" ? 700 : undefined,
                   }}
                 >
                   Portraits
@@ -72,6 +73,7 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
                     backgroundColor: subFilterButtonBackground,
                     outline: subFilter === "figures" ? subFilterActiveOutline : undefined,
                     outlineOffset: subFilter === "figures" ? "2px" : undefined,
+                    fontWeight: subFilter === "figures" ? 700 : undefined,
                   }}
                 >
                   Figures
