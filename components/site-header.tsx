@@ -145,18 +145,6 @@ export function SiteHeader() {
               aria-label="Primary"
               className="hidden items-center gap-6 text-[10px] uppercase tracking-[0.28em] text-black/68 md:flex"
             >
-              {navigationBeforeCollections.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "transition-opacity hover:opacity-60",
-                    isActive(item.href) && "text-black",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
               <div ref={collectionMenuRef} className="relative">
                 <button
                   type="button"
@@ -195,6 +183,18 @@ export function SiteHeader() {
                   </div>
                 </div>
               </div>
+              {navigationBeforeCollections.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "transition-opacity hover:opacity-60",
+                    isActive(item.href) && "text-black",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
               {navigationAfterCollections.map((item) => (
                 <Link
                   key={item.href}
@@ -252,16 +252,6 @@ export function SiteHeader() {
             aria-label="Mobile primary"
             className="flex flex-col gap-4 border-t border-black/10 py-5 text-[10px] uppercase tracking-[0.28em] text-black/70"
           >
-            {navigationBeforeCollections.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className={cn("transition-opacity hover:opacity-60", isActive(item.href) && "text-black")}
-              >
-                {item.label}
-              </Link>
-            ))}
             <div ref={mobileCollectionMenuRef} className="flex flex-col gap-3">
               <button
                 type="button"
@@ -295,6 +285,16 @@ export function SiteHeader() {
                 ))}
               </div>
             </div>
+            {navigationBeforeCollections.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className={cn("transition-opacity hover:opacity-60", isActive(item.href) && "text-black")}
+              >
+                {item.label}
+              </Link>
+            ))}
             {navigationAfterCollections.map((item) => (
               <Link
                 key={item.href}
