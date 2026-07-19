@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { collections, getAquariumSapientumSections, getFilteredCollectionProducts } from "@/data/store";
 import type { CollectionSlug } from "@/lib/types";
-import { cn, collectionAccentColors } from "@/lib/utils";
+import { collectionAccentColors } from "@/lib/utils";
 
 import { CollectionIntro } from "./collection-intro";
 import { CollectionSelect } from "./collection-select";
@@ -40,8 +40,9 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
     const figuresHref = subFilter === "figures" ? baseHref : `${baseHref}&type=figures`;
 
     const subFilterButtonClassName =
-      "inline-flex min-h-9 items-center justify-center border px-4 text-[10px] uppercase tracking-[0.28em] transition-colors hover:border-black/45";
+      "inline-flex min-h-9 items-center justify-center border border-black/18 px-4 text-[10px] uppercase tracking-[0.28em] transition-colors hover:border-black/45";
     const subFilterButtonBackground = "#f7f4ee";
+    const subFilterActiveOutline = "2px solid #0E2234";
 
     return (
       <div className="w-full" style={backgroundColor ? { backgroundColor } : undefined}>
@@ -53,21 +54,25 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={portraitsHref}
-                  className={cn(
-                    subFilterButtonClassName,
-                    subFilter === "portraits" ? "border-black/45" : "border-black/18",
-                  )}
-                  style={{ color: backgroundColor, backgroundColor: subFilterButtonBackground }}
+                  className={subFilterButtonClassName}
+                  style={{
+                    color: backgroundColor,
+                    backgroundColor: subFilterButtonBackground,
+                    outline: subFilter === "portraits" ? subFilterActiveOutline : undefined,
+                    outlineOffset: subFilter === "portraits" ? "2px" : undefined,
+                  }}
                 >
                   Portraits
                 </Link>
                 <Link
                   href={figuresHref}
-                  className={cn(
-                    subFilterButtonClassName,
-                    subFilter === "figures" ? "border-black/45" : "border-black/18",
-                  )}
-                  style={{ color: backgroundColor, backgroundColor: subFilterButtonBackground }}
+                  className={subFilterButtonClassName}
+                  style={{
+                    color: backgroundColor,
+                    backgroundColor: subFilterButtonBackground,
+                    outline: subFilter === "figures" ? subFilterActiveOutline : undefined,
+                    outlineOffset: subFilter === "figures" ? "2px" : undefined,
+                  }}
                 >
                   Figures
                 </Link>
