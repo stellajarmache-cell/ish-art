@@ -243,6 +243,26 @@ const printWorks: Product[] = floraAndFaunaWorks.map(
   },
 );
 
+const FLORA_AND_FAUNA_ORDER = [
+  "calliope",
+  "gaia",
+  "daydream",
+  "inside-looking-in",
+  "hermits-park-i",
+  "hermits-park-ii",
+  "camelia",
+  "white-peonies-i",
+  "white-peonies-ii",
+];
+
+export function getFloraAndFaunaWorks() {
+  const bySlug = new Map(printWorks.map((product) => [product.slug, product] as const));
+
+  return FLORA_AND_FAUNA_ORDER.map((slug) => bySlug.get(slug)).filter(
+    (product): product is Product => Boolean(product),
+  );
+}
+
 const aquariumSapientumWorks = [
   { id: "org-01", slug: "maris", title: "Maris", fileName: "P1 Maris.jpeg", size: "30 x 40 cm", group: "portraits" },
   { id: "org-02", slug: "cordelia", title: "Cordelia", fileName: "P2 Cordelia.jpeg", size: "30 x 40 cm", group: "portraits" },
