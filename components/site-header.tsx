@@ -8,6 +8,7 @@ import { brand, collections } from "@/data/store";
 import { cn } from "@/lib/utils";
 
 import { useShop } from "./shop-provider";
+import { useCollectionAccentColor } from "./use-collection-accent-color";
 
 const navigationBeforeCollections = [
   { href: collections.prints.href, label: collections.prints.navLabel },
@@ -32,6 +33,7 @@ export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [collectionMenuOpen, setCollectionMenuOpen] = useState(false);
   const { openSearch } = useShop();
+  const accentColor = useCollectionAccentColor();
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
@@ -116,6 +118,7 @@ export function SiteHeader() {
         "sticky top-0 z-40 border-b border-black/10 bg-white/95 transition-transform duration-300 ease-out will-change-transform",
         isHeaderVisible ? "translate-y-0" : "-translate-y-full",
       )}
+      style={accentColor ? { backgroundColor: accentColor } : undefined}
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-20 items-center justify-between gap-6">

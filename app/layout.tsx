@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 
 import { brand } from "@/data/store";
@@ -38,9 +39,13 @@ export default function RootLayout({
       <body className="min-h-full bg-background text-foreground">
         <ShopProvider>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader />
+            <Suspense fallback={null}>
+              <SiteHeader />
+            </Suspense>
             <main className="flex flex-1 flex-col">{children}</main>
-            <SiteFooter />
+            <Suspense fallback={null}>
+              <SiteFooter />
+            </Suspense>
           </div>
           <SearchModal />
           <CartDrawer />

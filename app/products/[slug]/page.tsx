@@ -7,7 +7,7 @@ import {
   isStorefrontCollection,
   products,
 } from "@/data/store";
-import { formatCurrency } from "@/lib/utils";
+import { collectionAccentColors, formatCurrency } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
 
@@ -64,13 +64,8 @@ export default async function ProductPage({
     notFound();
   }
 
-  const isAquariumSapientum = product.filters.includes("aquarium-sapientum");
-  const isFloraAndFauna = product.filters.includes("flora-and-fauna");
-  const backgroundColor = isAquariumSapientum
-    ? "#455A6B"
-    : isFloraAndFauna
-      ? "#777871"
-      : undefined;
+  const collectionTag = product.filters.find((tag) => tag in collectionAccentColors);
+  const backgroundColor = collectionTag ? collectionAccentColors[collectionTag] : undefined;
 
   return (
     <div

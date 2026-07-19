@@ -1,10 +1,19 @@
+"use client";
+
 import Link from "next/link";
 
 import { footerLinks } from "@/data/store";
 
+import { useCollectionAccentColor } from "./use-collection-accent-color";
+
 export function SiteFooter() {
+  const accentColor = useCollectionAccentColor();
+
   return (
-    <footer className="border-t border-black/10">
+    <footer
+      className="border-t border-black/10"
+      style={accentColor ? { backgroundColor: accentColor } : undefined}
+    >
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-16">
         <nav
           aria-label="Footer"

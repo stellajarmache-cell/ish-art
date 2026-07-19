@@ -1,5 +1,6 @@
 import { collections, getFilteredCollectionProducts } from "@/data/store";
 import type { CollectionSlug } from "@/lib/types";
+import { collectionAccentColors } from "@/lib/utils";
 
 import { CollectionIntro } from "./collection-intro";
 import { CollectionSelect } from "./collection-select";
@@ -16,13 +17,7 @@ interface CollectionPageProps {
 
 export function CollectionPage({ slug, page = 1, filter = "all" }: CollectionPageProps) {
   const collection = collections[slug];
-  const isAquariumSapientum = filter === "aquarium-sapientum";
-  const isFloraAndFauna = filter === "flora-and-fauna";
-  const backgroundColor = isAquariumSapientum
-    ? "#455A6B"
-    : isFloraAndFauna
-      ? "#777871"
-      : undefined;
+  const backgroundColor = collectionAccentColors[filter];
 
   const filteredProducts = getFilteredCollectionProducts(slug, filter);
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));

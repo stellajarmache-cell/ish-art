@@ -2,6 +2,11 @@ export function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
+export const collectionAccentColors: Record<string, string> = {
+  "aquarium-sapientum": "#455A6B",
+  "flora-and-fauna": "#777871",
+};
+
 export function formatCurrency(value: number) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
