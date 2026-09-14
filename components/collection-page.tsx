@@ -22,8 +22,6 @@ const THREE_COLUMN_GRID =
 const COLLECTION_INTRO_PLACEHOLDER =
   "Placeholder text — collection introduction to be added.";
 
-const FRAMED_IMAGE_CLASSNAME = "border border-black/18";
-
 const AQUARIUM_FIGURES_TOP_ROW = ["rosemary", "corentina", "darya"];
 const AQUARIUM_FIGURES_MIDDLE_ROW = ["doris", "meredith"];
 const AQUARIUM_FIGURES_BOTTOM_ROW = ["stellamaris"];
@@ -105,7 +103,6 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
                         key={product.slug}
                         product={product}
                         soldPresentation={collection.soldPresentation}
-                        imageClassName={FRAMED_IMAGE_CLASSNAME}
                       />
                     ))}
                 </div>
@@ -118,7 +115,6 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
                         key={product.slug}
                         product={product}
                         soldPresentation={collection.soldPresentation}
-                        imageClassName={FRAMED_IMAGE_CLASSNAME}
                       />
                     ))}
                 </div>
@@ -131,7 +127,6 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
                         key={product.slug}
                         product={product}
                         soldPresentation={collection.soldPresentation}
-                        imageClassName={FRAMED_IMAGE_CLASSNAME}
                       />
                     ))}
                 </div>
