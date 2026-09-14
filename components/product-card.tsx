@@ -1,17 +1,20 @@
 import Link from "next/link";
 
 import type { Product } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 import { ArtworkImage } from "./artwork-image";
 
 interface ProductCardProps {
   product: Product;
   soldPresentation?: "badge" | "plain";
+  imageClassName?: string;
 }
 
 export function ProductCard({
   product,
   soldPresentation = "badge",
+  imageClassName,
 }: ProductCardProps) {
   const soldLabel = soldPresentation === "plain" ? "Sold" : "Sold out";
 
@@ -22,7 +25,7 @@ export function ProductCard({
           <ArtworkImage
             artwork={product.artwork}
             mediaAspect="portrait"
-            className="transition-opacity duration-200 group-hover:opacity-90"
+            className={cn("transition-opacity duration-200 group-hover:opacity-90", imageClassName)}
           />
         </div>
 

@@ -22,6 +22,12 @@ const THREE_COLUMN_GRID =
 const COLLECTION_INTRO_PLACEHOLDER =
   "Placeholder text — collection introduction to be added.";
 
+const FRAMED_IMAGE_CLASSNAME = "border border-black/18";
+
+const AQUARIUM_FIGURES_TOP_ROW = ["rosemary", "corentina", "darya"];
+const AQUARIUM_FIGURES_MIDDLE_ROW = ["doris", "meredith"];
+const AQUARIUM_FIGURES_BOTTOM_ROW = ["stellamaris"];
+
 interface CollectionPageProps {
   slug: CollectionSlug;
   page?: number;
@@ -90,14 +96,45 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
             </div>
 
             {showFigures && figures.length > 0 ? (
-              <div className={THREE_COLUMN_GRID}>
-                {figures.map((product) => (
-                  <ProductCard
-                    key={product.slug}
-                    product={product}
-                    soldPresentation={collection.soldPresentation}
-                  />
-                ))}
+              <div className="space-y-10">
+                <div className={THREE_COLUMN_GRID}>
+                  {figures
+                    .filter((product) => AQUARIUM_FIGURES_TOP_ROW.includes(product.slug))
+                    .map((product) => (
+                      <ProductCard
+                        key={product.slug}
+                        product={product}
+                        soldPresentation={collection.soldPresentation}
+                        imageClassName={FRAMED_IMAGE_CLASSNAME}
+                      />
+                    ))}
+                </div>
+
+                <div className="mx-auto grid max-w-3xl grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
+                  {figures
+                    .filter((product) => AQUARIUM_FIGURES_MIDDLE_ROW.includes(product.slug))
+                    .map((product) => (
+                      <ProductCard
+                        key={product.slug}
+                        product={product}
+                        soldPresentation={collection.soldPresentation}
+                        imageClassName={FRAMED_IMAGE_CLASSNAME}
+                      />
+                    ))}
+                </div>
+
+                <div className="mx-auto grid max-w-lg grid-cols-1">
+                  {figures
+                    .filter((product) => AQUARIUM_FIGURES_BOTTOM_ROW.includes(product.slug))
+                    .map((product) => (
+                      <ProductCard
+                        key={product.slug}
+                        product={product}
+                        soldPresentation={collection.soldPresentation}
+                        imageClassName={FRAMED_IMAGE_CLASSNAME}
+                      />
+                    ))}
+                </div>
               </div>
             ) : null}
 
