@@ -12,7 +12,7 @@ export function HeroGateway() {
           fill
           preload
           sizes="100vw"
-          className="object-cover"
+          className="object-contain"
         />
       </div>
     </section>
