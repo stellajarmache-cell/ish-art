@@ -3,7 +3,7 @@ export function cn(...values: Array<string | false | null | undefined>) {
 }
 
 export const collectionAccentColors: Record<string, string> = {
-  "aquarium-sapientum": "#455A6B",
+  "aquarium-sapientum": "#777871",
   "flora-and-fauna": "#777871",
 };
 
