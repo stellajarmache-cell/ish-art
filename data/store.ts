@@ -349,7 +349,7 @@ export const aboutPage: AboutPageContent = {
   instagramLabel: "@stellajarmache",
   instagramHref: "https://instagram.com/stellajarmache",
   portrait: {
-    src: toPublicImagePath("Art website/FINAL ABOUT PIC.PNG"),
+    src: toPublicImagePath("Art website/szportrait.jpg"),
     alt: "Stella Jarmache portrait",
     aspect: "square",
   },
