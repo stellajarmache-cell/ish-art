@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import heroImage from "../public/Hero image.jpeg";
+import heroImage from "../public/Art website/Aquarium Sapientum/F6 StellaMaris.jpg";
 
 export function HeroGateway() {
   return (
@@ -8,7 +8,7 @@ export function HeroGateway() {
       <div className="absolute inset-0">
         <Image
           src={heroImage}
-          alt="Pastel painting of white flowers"
+          alt="Painting, Stella Maris"
           fill
           preload
           sizes="100vw"
