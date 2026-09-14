@@ -284,7 +284,7 @@ const aquariumSapientumWorks = [
   { id: "org-17", slug: "doris", title: "Doris", fileName: "F3 Doris new.jpg", size: "50 x 70 cm", price: 3500, group: "figures" },
   { id: "org-20", slug: "corentina", title: "Corentina", fileName: "F5 Corentina new.jpg", size: "50 x 70 cm", price: 3500, group: "figures" },
   { id: "org-18", slug: "meredith", title: "Meredith", fileName: "F4 Meredith new.jpg", size: "50 x 70 cm", price: 3500, group: "figures" },
-  { id: "org-21", slug: "stellamaris", title: "Stella Maris", fileName: "F6 StellaMaris.jpg", size: "50 x 70 cm", price: 3500, group: "figures" },
+  { id: "org-21", slug: "stellamaris", title: "Stella Maris", fileName: "F6 StellaMaris.jpg", size: "100 x 70 cm", price: 4000, group: "figures" },
 ] satisfies ReadonlyArray<{
   id: string;
   slug: string;
