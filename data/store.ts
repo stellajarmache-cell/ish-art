@@ -10,7 +10,7 @@ import type {
 } from "@/lib/types";
 
 export const brand = {
-  name: "ISH ART",
+  name: "Stella Jarmache",
   headerName: "STELLA JARMACHE",
   strapline: "Signed Editions and Original Prints",
   description:
