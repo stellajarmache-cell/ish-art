@@ -12,7 +12,7 @@ import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: {
-    default: `${brand.name} | Artist Storefront`,
+    default: brand.name,
     template: `%s | ${brand.name}`,
   },
   description: brand.description,
