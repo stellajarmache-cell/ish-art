@@ -268,21 +268,26 @@ export function SiteHeader() {
               <div
                 id="mobile-collections-navigation-menu"
                 className={cn(
-                  "flex flex-col gap-3 overflow-hidden pl-4 transition-[max-height,opacity]",
+                  "overflow-hidden transition-[max-height,opacity]",
                   collectionMenuOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
                 )}
               >
-                {collectionNavigation.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="font-bold transition-opacity hover:opacity-60"
-                    style={{ color: item.color }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                <div
+                  className="flex flex-col gap-3 border border-black/10 px-4 py-3"
+                  style={{ backgroundColor: COLLECTIONS_MENU_BACKGROUND }}
+                >
+                  {collectionNavigation.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="font-bold transition-opacity hover:opacity-60"
+                      style={{ color: item.color }}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
             {navigationBeforeCollections.map((item) => (

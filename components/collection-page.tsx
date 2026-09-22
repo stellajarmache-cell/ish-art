@@ -19,8 +19,11 @@ const PAGE_SIZE = 12;
 const THREE_COLUMN_GRID =
   "grid auto-rows-fr grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3";
 
-const COLLECTION_INTRO_PLACEHOLDER =
-  "Placeholder text — collection introduction to be added.";
+const AQUARIUM_SAPIENTUM_INTRO =
+  "An aquatic mythology of women rendered in charcoal and pastel — portraits and figures drawn from dream imagery, symbolism, and Jungian psychology, submerged somewhere between myth and memory.";
+
+const FLORA_AND_FAUNA_INTRO =
+  "Botanical studies in pastel on paper — florals, gardens, and quiet corners observed closely from the studio, built slowly around bloom, light, and stillness.";
 
 const AQUARIUM_FIGURES_TOP_ROW = ["rosemary", "corentina", "darya"];
 const AQUARIUM_FIGURES_MIDDLE_ROW = ["doris", "meredith"];
@@ -56,7 +59,7 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
     return (
       <div className="w-full" style={backgroundColor ? { backgroundColor } : undefined}>
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-          <CollectionIntro title="Aquarium Sapientum" intro={COLLECTION_INTRO_PLACEHOLDER} />
+          <CollectionIntro title="Aquarium Sapientum" intro={AQUARIUM_SAPIENTUM_INTRO} />
 
           <div className="space-y-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -169,7 +172,7 @@ export function CollectionPage({ slug, page = 1, filter = "all", subFilter = "" 
     return (
       <div className="w-full" style={backgroundColor ? { backgroundColor } : undefined}>
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-          <CollectionIntro title="Flora and Fauna" intro={COLLECTION_INTRO_PLACEHOLDER} />
+          <CollectionIntro title="Flora and Fauna" intro={FLORA_AND_FAUNA_INTRO} />
 
           <div className="space-y-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-end">
